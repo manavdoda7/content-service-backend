@@ -1,0 +1,25 @@
+{
+  "name": "content-service-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manavdoda7/content-service-backend.git"
+  },
+  "author": "Manav Doda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manavdoda7/content-service-backend/issues"
+  },
+  "homepage": "https://github.com/manavdoda7/content-service-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
