@@ -3,7 +3,7 @@ const Series = require('../models/series');
 
 const router = require('express').Router()
 
-router.post('/upload', async(req, res)=>{
+router.post('/', async(req, res)=>{
     console.log('POST /api/upload request');
     const {name, title, chapters} = req.body
     try {

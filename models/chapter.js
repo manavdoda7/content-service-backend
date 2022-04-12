@@ -13,6 +13,12 @@ class Chapter {
         console.log(q);
         return db.promise().query(q)
     }
+    static async fetchAllChapters() {
+        return db.promise().query(`select * from chapters;`)
+    }
+    static async fetchChaptersBySeriesID(seriesId) {
+        return db.promise().query(`select name, duration from chapters where seriesId = ${seriesId}`)
+    }
 }
 
 module.exports = Chapter
