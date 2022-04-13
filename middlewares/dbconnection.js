@@ -9,7 +9,6 @@ const db_config = {
     multipleStatements: true,
     timezone: process.env.TIMEZONE||"+05:30"
 }
-console.log(db_config);
 
 let db = mysql.createConnection(db_config)
 

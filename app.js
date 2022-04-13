@@ -11,6 +11,7 @@ app.get('/', (req, res)=>{
 
 app.use('/api/upload', require('./routes/uploadRoutes'))
 app.use('/api/view', require('./routes/metadataRoutes'))
+app.use('/api/user', require('./routes/userRoutes'))
 
 app.listen(process.env.PORT, ()=>{
     console.log(`App listening at port ${process.env.PORT}`)
