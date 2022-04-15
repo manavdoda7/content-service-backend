@@ -3,6 +3,7 @@ const Series = require('../models/series');
 const url = require('../url');
 const axios = require('axios');
 const Chapter = require('../models/chapter');
+const intValidator = require('../validators/intValidator')
 
 const router = require('express').Router()
 
@@ -34,8 +35,9 @@ router.get('/', checkAuth, async(req, res)=>{
     return res.status(200).json({success:true, series:series})
 })
 
-router.get('/:id', checkAuth, async(req, res)=>{
-    console.log('GET /api/user request');
+router.get('/series/:id', checkAuth, async(req, res)=>{
+    if(!intValidator(req.params.id)) return res.status(403).json({success:false, message:'Series id should be an integer'})
+    console.log('GET /api/user/series request');
     let series
     try {
         await axios.post(url+'api/dailypass/', {"body":""}, {

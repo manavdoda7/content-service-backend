@@ -1,6 +1,6 @@
 const Chapter = require('../models/chapter');
 const Series = require('../models/series');
-
+const intValidator = require('../validators/intValidator')
 const router = require('express').Router()
 
 router.get('/', async(req, res)=>{
@@ -23,6 +23,7 @@ router.get('/', async(req, res)=>{
 })
 
 router.get('/:id', async(req, res)=>{
+    if(!intValidator(req.params.id)) return res.status(403).json({success:false, message:'Series id should be an integer'})
     console.log(`GET /api/view/${req.params.id}`);
     let series, chapters
     try {
