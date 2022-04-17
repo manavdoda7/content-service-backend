@@ -3,6 +3,43 @@ const Series = require('../models/series');
 const intValidator = require('../validators/intValidator')
 const router = require('express').Router()
 
+/**
+ * @swagger
+ * /api/view/:
+ *  get:
+ *      tags: ["Viewing Metadata"]
+ *      parameters: []
+ *      security:
+ *          bearerAuth: []
+ *      summary: "Route for viewing all the metadata."
+ *      description: "This route lists all the metadata dividing it into series and chapters."
+ *      responses: 
+ *          '200':
+ *              description: Lists all the web series.
+ *          '408':
+ *              description: Request timeout error.
+ * /api/view/{id}:
+ *  get:
+ *      tags: ["Viewing Metadata"]
+ *      parameters: 
+ *        - name: id
+ *          in: path
+ *          description: ID of the show.
+ *          required: true
+ *          type: integer
+ *      security:
+ *          bearerAuth: []
+ *      summary: "Route for viewing the details about a particular web series."
+ *      description: "This route enlists the information about a particular web series and all the chapters of that series."
+ *      responses: 
+ *          '200':
+ *              description: Lists all the details of web series and chapters.
+ *          '403':
+ *              description: Series ID doesn't exist.
+ *          '408':
+ *              description: Request timeout error.
+ */
+
 router.get('/', async(req, res)=>{
     console.log('GET /api/ request');
     let series, chapters
@@ -23,13 +60,15 @@ router.get('/', async(req, res)=>{
 })
 
 router.get('/:id', async(req, res)=>{
-    if(!intValidator(req.params.id)) return res.status(403).json({success:false, message:'Series id should be an integer'})
+    console.log(typeof(req.params.id), req.params.id);
+    if(!intValidator(req.params.id)) return res.status(403).json({success:false, message:'Invalid series ID.'})
     console.log(`GET /api/view/${req.params.id}`);
     let series, chapters
     try {
         series = await Series.fetchSeriesByID(req.params.id)
         series = series[0]
         series = series[0]
+        if(series==undefined) return res.status(403).json({success:false, message:'Invalid series ID.'})
         chapters = await Chapter.fetchChaptersBySeriesID(req.params.id)
         chapters = chapters[0]
         series.chapters = chapters

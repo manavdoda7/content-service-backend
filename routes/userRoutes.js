@@ -7,6 +7,42 @@ const intValidator = require('../validators/intValidator')
 
 const router = require('express').Router()
 
+
+/**
+ * @swagger
+ * /api/user/:
+ *  get:
+ *      tags: ["User Routes"]
+ *      parameters: []
+ *      summary: "Route for viewing all the unlocked content for a user."
+ *      description: "This route lists all the webseries and their unlocked chapters for a user."
+ *      responses: 
+ *          '200':
+ *              description: Lists all the unlocked content.
+ *          '403':
+ *              description: User unauthorized.
+ *          '408':
+ *              description: Request timeout error.
+ * /api/user/series/{id}:
+ *  get:
+ *      tags: ["User Routes"]
+ *      parameters: 
+ *        - name: id
+ *          in: path
+ *          description: ID of the show.
+ *          required: true
+ *          type: integer
+ *      summary: "Route for viewing the details and unlocked episodes of a particular web series."
+ *      description: "This route enlists the information about a particular web series and all the unlocked chapters of that series."
+ *      responses: 
+ *          '200':
+ *              description: Lists all the details of web series and unlocked content.
+ *          '403':
+ *              description: Series ID doesn't exist or user unauthorized.
+ *          '408':
+ *              description: Request timeout error.
+ */
+
 router.get('/', checkAuth, async(req, res)=>{
     console.log('GET /api/user request');
     let series

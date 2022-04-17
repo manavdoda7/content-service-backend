@@ -5,14 +5,14 @@ const db_config = {
     host: process.env.DB,
     user: process.env.DB_USER,
     database: process.env.DB_DATABASE,
-    // password:process.env.DB_PASSWORD,
+    password:process.env.DB_PASSWORD,
     multipleStatements: true,
     timezone: process.env.TIMEZONE||"+05:30"
 }
 
 let db = mysql.createConnection(db_config)
 
-console.log(createChapters, createcontent);
+// console.log(createChapters, createcontent);
 
 db.promise().query(createcontent + createChapters)
     .then(result=>{
