@@ -19,11 +19,12 @@ const options = {
             version: "1.0.0",
         },
         servers: [
-            {
-                url: "http://localhost:5000",
-            },
+
             {
                 url: "https://content-service-backend.herokuapp.com/",
+            },
+            {
+                url: "http://localhost:5000",
             }
         ],
         components: {
@@ -44,7 +45,7 @@ const options = {
     apis: ["./routes/*.js"],
 };
 const swaggerSpecs = swaggerJsdoc(options);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 
 app.get('/', (req, res)=>{
