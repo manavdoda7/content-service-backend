@@ -1,6 +1,6 @@
 require('dotenv').config()
 const mysql = require('mysql2')
-const {createcontent, createChapters} = require('../Controllers/sqlQueries')
+const {createcontent, createChapters} = require('../controllers/sqlqueries')
 const db_config = {
     host: process.env.DB,
     user: process.env.DB_USER,
